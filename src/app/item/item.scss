@@ -1,0 +1,27 @@
+.Item {
+    &-content {
+        display: block;
+        position: relative;
+    }
+
+    &-button {
+        height: 100%;
+        width: 100%;
+
+        &.isEmpty {
+            filter: brightness(0.5);
+            background-color: rgba(0,0,0, 0.9)
+        }
+    }
+
+    &-child {
+        height: 30px;
+        width: 30px;
+    }
+
+    &-children {
+        top: 0;
+        right:0;
+        position: absolute;
+    }
+}

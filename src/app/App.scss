@@ -1,0 +1,25 @@
+@import '../styles/theme';
+
+.App {
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+    max-width: 400px;
+    flex-wrap: wrap;
+
+    &-search {
+        padding: 4px 10px;
+        border: 1px solid $color-black;
+        font-size: $font-size-medium;
+    }
+
+    &-quote {
+        padding: 10px;
+        max-width: 200px;
+    }
+
+    &-item {
+        width: 60px;
+        height: 60px;
+    }
+}

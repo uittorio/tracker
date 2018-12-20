@@ -1,0 +1,50 @@
+{
+  "items": [
+    {
+      "type": "COUNT",
+      "name": "bomb"
+    },
+    {
+      "type": "STATE",
+      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
+      "name": "sword",
+      "items": [
+        {
+          "name": "gold",
+          "type": "STATE",
+          "states": ["bombos", "ether"]
+        }
+      ]
+    },
+    {
+      "type": "STATE",
+      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
+      "name": "sword"
+    },
+    {
+      "type": "STATE",
+      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
+      "name": "sword"
+    },
+    {
+      "type": "STATE",
+      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
+      "name": "sword"
+    },
+    {
+      "type": "STATE",
+      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
+      "name": "sword"
+    },
+    {
+      "type": "STATE",
+      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
+      "name": "sword"
+    },
+    {
+      "type": "STATE",
+      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
+      "name": "sword"
+    }
+  ]
+}

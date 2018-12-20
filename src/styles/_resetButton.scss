@@ -1,0 +1,28 @@
+button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: inherit;
+  overflow: visible;
+  cursor: pointer;
+  padding: 0;
+
+  > * {
+    left: 0;
+    position: relative;
+    top: 0;
+  }
+
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
