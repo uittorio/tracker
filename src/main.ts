@@ -12,14 +12,17 @@ import { GameItemRepository } from "./core/game/gameItemRepository";
 import { ItemStateSwitchFactory } from "./core/item/itemStateSwitch/itemStateSwitchFactory";
 import { GameMultiplayerService } from "./core/game/gameMultiplayer/gameMultiplayerService";
 import { GameMultiplayerItemRepository } from "./core/game/gameMultiplayer/gameMultiplayerRepository";
+import { ImageRepository } from "./core/imageRepository/imageRepository";
 
 const numberOfPlayers: number = 2;
 
-const reactCountViewComposer = new ItemCountReactViewComposer();
+const imageRepository: ImageRepository = new ImageRepository();
+
+const reactCountViewComposer = new ItemCountReactViewComposer(imageRepository);
 const reactCountViewer = new ReactViewer(reactCountViewComposer);
 const itemCountFactory = new ItemCountFactory(reactCountViewer);
 
-const reactStateViewComposer = new ItemStateReactViewComposer();
+const reactStateViewComposer = new ItemStateReactViewComposer(imageRepository);
 const reactStateViewer = new ReactViewer(reactStateViewComposer);
 const itemStateFactory = new ItemStateFactory(reactStateViewer);
 

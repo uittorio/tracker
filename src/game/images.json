@@ -1,0 +1,13 @@
+{
+  "sword": {
+    "TemperedSword": "resources/sword/TemperedSword.png",
+    "GoldenSword": "resources/sword/GoldenSword.png",
+    "MasterSword": "resources/sword/MasterSword.png"
+  },
+  "bomb": "resources/bomb/bomb.png",
+  "gold": {
+    "bombos": "resources/gold/bombos.png",
+    "ether": "resources/gold/ether.png",
+    "unknown": "resources/gold/unknown.png"
+  }
+}

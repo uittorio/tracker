@@ -43,7 +43,6 @@ export class App extends React.Component<AppProps, AppState> {
     private updateItem(item: Item<React.ReactNode>) {
        const newList: Array<Array<Item<ReactNode>>> = this.props.gameMultiPlayerService.updateItem(item, this.state.itemsList);
 
-       console.log(newList);
        this.setState({
            itemsList: newList
        })

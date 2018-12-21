@@ -1,9 +1,11 @@
 import * as React from "react";
 import "./ItemCount.scss";
+import { ImageRepository } from "../../../core/imageRepository/imageRepository";
 
 interface ItemCountProps {
     count: number;
     resource: string;
+	imageRepository: ImageRepository;
 }
 
 interface ItemCountState {
@@ -14,9 +16,10 @@ export class ItemCountComponent extends React.Component<ItemCountProps, ItemCoun
     constructor(props) {
         super(props);
 
+        const image: string = this.props.imageRepository.get(this.props.resource);
         this.state = {
             style: {
-                backgroundImage: "url(resources/"+ this.props.resource +"/" + this.props.resource +".png)"
+                backgroundImage: "url("+ image +")"
             }
         };
     }

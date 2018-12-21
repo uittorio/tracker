@@ -1,9 +1,11 @@
 import * as React from "react";
 import "./ItemState.scss";
+import { ImageRepository } from "../../../core/imageRepository/imageRepository";
 
 interface ItemStateProps {
     resource: string;
     state: string;
+    imageRepository: ImageRepository;
 }
 
 export class ItemStateComponent extends React.Component<ItemStateProps> {
@@ -12,8 +14,10 @@ export class ItemStateComponent extends React.Component<ItemStateProps> {
     }
 
     public render() {
+		const image: string = this.props.imageRepository.getNested(this.props.resource, this.props.state);
+		
         const style = {
-            backgroundImage: "url(resources/" + this.props.resource + "/" + this.props.state + ".png)"
+            backgroundImage: "url("+ image +")"
         };
 
         return (
