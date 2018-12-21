@@ -7,15 +7,8 @@
     max-width: 400px;
     flex-wrap: wrap;
 
-    &-search {
-        padding: 4px 10px;
-        border: 1px solid $color-black;
-        font-size: $font-size-medium;
-    }
-
-    &-quote {
-        padding: 10px;
-        max-width: 200px;
+    &-B {
+        margin-left: 20px;
     }
 
     &-item {

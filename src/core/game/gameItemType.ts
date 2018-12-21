@@ -1,4 +1,5 @@
 export enum GameItemType {
     COUNT = "COUNT",
-    STATE = "STATE"
+    STATE = "STATE",
+    STATE_SWITCH = "STATE_SWITCH"
 }

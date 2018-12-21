@@ -1,17 +1,15 @@
 {
   "items": [
     {
-      "type": "COUNT",
-      "name": "bomb"
-    },
-    {
       "type": "STATE",
       "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "name": "sword",
+      "uniqueId": "sword",
+      "resource": "sword",
       "items": [
         {
-          "name": "gold",
-          "type": "STATE",
+          "uniqueId": "gold",
+          "resource": "gold",
+          "type": "STATE_SWITCH",
           "states": ["bombos", "ether"]
         }
       ]
@@ -19,32 +17,14 @@
     {
       "type": "STATE",
       "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "name": "sword"
+      "uniqueId": "sword2",
+      "resource": "sword"
     },
     {
-      "type": "STATE",
-      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "name": "sword"
-    },
-    {
-      "type": "STATE",
-      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "name": "sword"
-    },
-    {
-      "type": "STATE",
-      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "name": "sword"
-    },
-    {
-      "type": "STATE",
-      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "name": "sword"
-    },
-    {
-      "type": "STATE",
-      "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "name": "sword"
+      "type": "COUNT",
+      "uniqueId": "bomb",
+      "resource": "bomb",
+      "limit": 4
     }
   ]
 }

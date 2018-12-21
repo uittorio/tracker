@@ -3,7 +3,7 @@ import "./ItemCount.scss";
 
 interface ItemCountProps {
     count: number;
-    name: string;
+    resource: string;
 }
 
 interface ItemCountState {
@@ -16,7 +16,7 @@ export class ItemCountComponent extends React.Component<ItemCountProps, ItemCoun
 
         this.state = {
             style: {
-                backgroundImage: "url(resources/"+ this.props.name +"/" + this.props.name +".png)"
+                backgroundImage: "url(resources/"+ this.props.resource +"/" + this.props.resource +".png)"
             }
         };
     }

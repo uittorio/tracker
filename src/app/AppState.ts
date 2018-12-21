@@ -1,6 +1,6 @@
-import { Item } from "../core/item/item";
 import { ReactNode } from "react";
+import { Item } from "../core/item/item";
 
 export interface AppState {
-    items: Array<Item<ReactNode>>
+    itemsList: Array<Array<Item<ReactNode>>>;
 }

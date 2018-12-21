@@ -3,43 +3,39 @@ import "./item.scss";
 import { ReactNode } from "react";
 import { Item } from "../../core/item/item";
 
-interface ItemState {
-    view: ReactNode;
-    buttonClass: string;
-}
 
 export interface ItemProps {
     item: Item<ReactNode>;
+    onChange: (item: Item<ReactNode>) => void;
 }
 
-export class ItemComponent extends React.Component<ItemProps, ItemState> {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            view: this.props.item.getCurrentStateView(),
-            buttonClass:  this._getButtonClass()
-        }
-    }
-
+export class ItemComponent extends React.Component<ItemProps> {
     public render() {
         const childItems: Array<JSX.Element>= this.props.item.items.map((item: Item<ReactNode>, index: number) => {
            return <div className={"Item-child"} key={index}>
-               <ItemComponent item={item}/>
+               <ItemComponent item={item} onChange={(item: Item<ReactNode>) => this.onChangeChild(item)}/>
            </div>
         });
         return (
             <div className={"Item-content"}>
-                <button className={this.state.buttonClass}
+                <button className={this._getButtonClass()}
                         onClick={() => this.onLeftClick()}
                         onContextMenu={() => this.onRightClick()}>
-                    {this.state.view}
+                    {this.props.item.getCurrentStateView()}
                 </button>
                 <div className={"Item-children"}>
                     {childItems}
                 </div>
             </div>
         )
+    }
+
+    onChangeChild(item: Item<ReactNode>) {
+        this.props.onChange(item);
+    }
+
+    onChange() {
+        this.props.onChange(this.props.item);
     }
 
     onLeftClick() {
@@ -56,6 +52,8 @@ export class ItemComponent extends React.Component<ItemProps, ItemState> {
         this.setState({
             view: this.props.item.getCurrentStateView(),
             buttonClass: this._getButtonClass()
+        }, () => {
+            this.onChange();
         });
     }
 

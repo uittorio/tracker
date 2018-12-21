@@ -5,5 +5,10 @@ export interface Item<T> {
     isEmpty(): boolean;
     addItem(item: Item<T>): void;
     items: Array<Item<T>>;
+    name: string;
+    resource: string;
+    isState(updateOn: string): boolean;
+    copyState(itemToCopy: Item<T>): void;
+    getCurrentState(): number;
 }
 

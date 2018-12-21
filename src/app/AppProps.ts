@@ -1,6 +1,9 @@
+import { ItemService } from "../core/item/itemService";
 import { ReactNode } from "react";
-import { ItemService } from "./item/itemService";
+import { GameMultiplayerService } from "../core/game/gameMultiplayer/gameMultiplayerService";
 
 export interface AppProps {
+    numberOfPlayers: number;
     itemService: ItemService<ReactNode>;
+    gameMultiPlayerService: GameMultiplayerService<ReactNode>;
 }

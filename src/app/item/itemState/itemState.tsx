@@ -2,7 +2,7 @@ import * as React from "react";
 import "./ItemState.scss";
 
 interface ItemStateProps {
-    name: string;
+    resource: string;
     state: string;
 }
 
@@ -13,7 +13,7 @@ export class ItemStateComponent extends React.Component<ItemStateProps> {
 
     public render() {
         const style = {
-            backgroundImage: "url(resources/" + this.props.name + "/" + this.props.state + ".png)"
+            backgroundImage: "url(resources/" + this.props.resource + "/" + this.props.state + ".png)"
         };
 
         return (

@@ -10,7 +10,7 @@ export class ReactViewer implements Viewer<ReactNode> {
         this._viewComposer = viewComposer;
     }
 
-    getViewFromState(state: State, name: string): ReactNode {
-        return this._viewComposer.compose(state.getValue(), name);
+    getViewFromState(state: State, resource: string): ReactNode {
+        return this._viewComposer.compose(state.getValue(), resource);
     }
 }

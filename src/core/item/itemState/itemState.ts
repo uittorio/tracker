@@ -1,18 +1,21 @@
 import { Viewer } from "../../viewer/viewer";
 import { State } from "../../state/state";
 import { Item } from "../item";
+import { ItemStateConfig } from "./itemStateConfig";
 
 export class ItemState<T> implements Item<T> {
     public items: Array<Item<T>> = [];
+    public name: string;
+    public resource: string;
     private _viewer: Viewer<T>;
-    private readonly _name: string;
-    private readonly _states: Array<string>;
-    private _currentStateNumber: number;
+    protected _states: Array<string>;
+    protected _currentStateNumber: number;
 
-    constructor(viewer: Viewer<T>, name: string, states: Array<string>) {
+    constructor(viewer: Viewer<T>, config: ItemStateConfig) {
+        this.name = config.name;
+        this.resource = config.resource;
         this._viewer = viewer;
-        this._name = name;
-        this._states = [states[0], ...states];
+        this._states = [config.states[0], ...config.states];
         this._currentStateNumber = 0;
     }
 
@@ -39,11 +42,27 @@ export class ItemState<T> implements Item<T> {
     getCurrentStateView(): T {
         const state: State = new State(this._states[this._currentStateNumber]);
 
-        return this._viewer.getViewFromState(state, this._name);
+        return this._viewer.getViewFromState(state, this.resource);
     }
 
     addItem(item: Item<T>) {
         this.items.push(item);
+    }
+
+    isState(updateOn: string): boolean {
+        if (updateOn === "EMPTY") {
+            return this.isEmpty();
+        }
+
+        return false;
+    }
+
+    getCurrentState(): number {
+        return this._currentStateNumber;
+    }
+
+    copyState(itemToCopy: Item<T>): void {
+        this._currentStateNumber = itemToCopy.getCurrentState();
     }
 
 }

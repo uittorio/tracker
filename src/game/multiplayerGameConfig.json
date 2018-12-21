@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "itemId": "bomb",
+      "updateOn": "EMPTY"
+    },
+    {
+      "itemId": "sword",
+      "items": [
+        {
+          "itemId": "gold",
+          "updateOn": "EMPTY"
+        }
+      ]
+    }
+  ]
+}

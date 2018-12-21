@@ -5,14 +5,15 @@ export interface GameConfig {
 }
 
 export interface GameConfigItem {
-	name: string;
+	uniqueId: string;
 	type: string;
+    resource: string;
+    limit?: number;
 	states?: Array<string>;
 	items: Array<GameConfigItem>;
 }
-export class GameItemRepository {
-    constructor() {}
 
+export class GameItemRepository {
     getAll(): Array<GameConfigItem> {
 		return (config as any as GameConfig).items;
 	}
