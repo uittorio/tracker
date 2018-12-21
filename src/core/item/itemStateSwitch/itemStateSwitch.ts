@@ -18,6 +18,6 @@ export class ItemStateSwitch<T> extends ItemState<T> implements Item<T> {
     }
 
     isEmpty(): boolean {
-        return this._currentStateNumber % 2 !== 0;
+        return this._currentStateNumber % 2 !== 0 || this._currentStateNumber === 0;
     }
 }

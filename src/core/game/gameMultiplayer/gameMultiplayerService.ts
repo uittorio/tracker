@@ -9,36 +9,67 @@ export class GameMultiplayerService<T> {
     }
 
     public updateItem(item: Item<T>, allItems: Array<Array<Item<T>>>): Array<Array<Item<T>>> {
-        const configItem: GameMultiplayerConfigItem = this._findConfigFromItem(item, this._config);
-
-        if (configItem && item.isState(configItem.updateOn)) {
-            return this._updateItemInConfigs(allItems, configItem, item);
-        }
+        this._config.forEach((config: GameMultiplayerConfigItem) => {
+			const configItem: GameMultiplayerConfigItem = this._searchConfigFromItem(item, config);
+			if (configItem && item.isState(configItem.updateOn)) {
+				return this._updateItemInConfigs(allItems, configItem, item);
+			}
+		});
 
         return allItems;
     }
 
-    private _findConfigFromItem(item: Item<T>, configList: Array<GameMultiplayerConfigItem>): GameMultiplayerConfigItem {
-        return configList.find((config: GameMultiplayerConfigItem) => {
-            return config.itemId === item.name || !!this._findConfigFromItem(item, config.items);
-        });
-    }
-
     private _updateItemInConfigs(itemGroup: Array<Array<Item<T>>>, config: GameMultiplayerConfigItem, itemToCopy: Item<T>): Array<Array<Item<T>>> {
         itemGroup.forEach((itemList: Array<Item<T>>) => {
-            const itemToUpdate = this._findItemFromConfig(itemList, config);
-
-            if (itemToUpdate) {
-               itemToUpdate.copyState(itemToCopy);
-            }
+            itemList.forEach((item: Item<T>) => {
+				const itemToUpdate = this._searchItemFromConfig(config, item);
+				if (itemToUpdate) {
+					itemToUpdate.copyState(itemToCopy);
+				}
+			});
         });
 
         return itemGroup;
     }
-
-    private _findItemFromConfig(itemList: Array<Item<T>>, config: GameMultiplayerConfigItem) {
-        return itemList.find((item: Item<T>) => {
-            return config.itemId === item.name || !!this._findItemFromConfig(item.items, config);
-        });
+    
+    private _searchConfigFromItem(item: Item<T>, config: GameMultiplayerConfigItem): GameMultiplayerConfigItem {
+        if (item.name === config.itemId) {
+            return config;
+        }
+        
+        let result;
+        
+        if (config.items) {
+            config.items.forEach((configItem: GameMultiplayerConfigItem) => {
+                if (!result) {
+					result = this._searchConfigFromItem(item, configItem);
+                }
+            });
+            
+            return result;
+        }
+        
+        return null;
     }
+	
+	private _searchItemFromConfig(config: GameMultiplayerConfigItem, item: Item<T>): Item<T> {
+		if (config.itemId === item.name) {
+			return item;
+		}
+		
+		let result;
+		
+		if (item.items) {
+			item.items.forEach((itemChild: Item<T>) => {
+				if (!result) {
+					result = this._searchItemFromConfig(config, itemChild);
+				}
+			});
+			
+			return result;
+		}
+		
+		return null;
+	}
+
 }
