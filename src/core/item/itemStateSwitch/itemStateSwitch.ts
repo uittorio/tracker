@@ -1,12 +1,12 @@
-import { Viewer } from "../../viewer/viewer";
 import { Item } from "../item";
 import { ItemState } from "../itemState/itemState";
 import { ItemStateConfig } from "../itemState/itemStateConfig";
+import { ViewComposer } from "../../viewer/viewComposer";
 
 export class ItemStateSwitch<T> extends ItemState<T> implements Item<T> {
     public items: Array<Item<T>> = [];
 
-    constructor(viewer: Viewer<T>, config: ItemStateConfig) {
+    constructor(viewer: ViewComposer<T>, config: ItemStateConfig) {
         super(viewer, config);
         this._states = config.states.reduce((acc: Array<string>, state: string) => {
             acc.push(state);

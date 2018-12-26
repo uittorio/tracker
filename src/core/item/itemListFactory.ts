@@ -4,12 +4,14 @@ import { ItemStateFactory } from "./itemState/itemStateFactory";
 import { GameItemType } from "../game/gameItemType";
 import { GameConfigItem, GameItemRepository } from "../game/gameItemRepository";
 import { ItemStateSwitchFactory } from "./itemStateSwitch/itemStateSwitchFactory";
+import { Inject, Injectable } from "react.di";
 
-export class ItemService<T> {
-    private _itemCountFactory: ItemCountFactory<T>;
-    private _itemStateFactory: ItemStateFactory<T>;
-    private _gameRepository: GameItemRepository;
-    private _itemStateSwitchFactory: ItemStateSwitchFactory<T>;
+@Injectable
+export class ItemListFactory<T> {
+	@Inject private _itemCountFactory: ItemCountFactory<T>;
+	@Inject private _itemStateFactory: ItemStateFactory<T>;
+	@Inject private _gameRepository: GameItemRepository;
+	@Inject private _itemStateSwitchFactory: ItemStateSwitchFactory<T>;
 
     constructor(itemCountFactory: ItemCountFactory<T>,
                 itemStateFactory: ItemStateFactory<T>,
@@ -24,6 +26,10 @@ export class ItemService<T> {
     public get(): Array<Item<T>> {
         return this._convertGameList(this._gameRepository.getAll());
     }
+	
+	public fromConfig(config: Array<GameConfigItem>): Array<Item<T>> {
+		return this._convertGameList(this._gameRepository.getAll());
+	}
     
     private _convertGameList(gameItemList: Array<GameConfigItem>) {
         return gameItemList.map((gameItem: GameConfigItem) => {
@@ -44,19 +50,19 @@ export class ItemService<T> {
     private _convertGameItem(gameItem: GameConfigItem): Item<T> {
         if (gameItem.type === GameItemType.COUNT) {
             return this._itemCountFactory.create({
-                name: gameItem.uniqueId,
+                id: gameItem.id,
                 limit: gameItem.limit || Infinity,
                 resource: gameItem.resource
             });
         } else if (gameItem.type === GameItemType.STATE) {
             return this._itemStateFactory.create({
-                name: gameItem.uniqueId,
+                id: gameItem.id,
                 states: gameItem.states,
                 resource: gameItem.resource
             });
-        } else if(gameItem.type === GameItemType.STATE_SWITCH) {
+        } else if (gameItem.type === GameItemType.STATE_SWITCH) {
             return this._itemStateSwitchFactory.create({
-                name: gameItem.uniqueId,
+                id: gameItem.id,
                 states: gameItem.states,
                 resource: gameItem.resource
             });

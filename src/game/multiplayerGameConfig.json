@@ -5,13 +5,8 @@
       "updateOn": "EMPTY"
     },
     {
-      "itemId": "sword",
-      "items": [
-        {
-          "itemId": "gold",
-          "updateOn": "EMPTY"
-        }
-      ]
+      "itemId": "gold",
+      "updateOn": "EMPTY"
     }
   ]
 }

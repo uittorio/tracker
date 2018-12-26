@@ -9,10 +9,6 @@ interface ItemStateProps {
 }
 
 export class ItemStateComponent extends React.Component<ItemStateProps> {
-    constructor(props) {
-        super(props);
-    }
-
     public render() {
 		const image: string = this.props.imageRepository.getNested(this.props.resource, this.props.state);
 		

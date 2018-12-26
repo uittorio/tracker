@@ -3,7 +3,9 @@ import { ReactNode } from "react";
 import { ReactViewComposer } from "../../../reactViewer/reactViewerComposer/reactViewComposer";
 import { ItemStateComponent } from "../itemState";
 import { ImageRepository } from "../../../../core/imageRepository/imageRepository";
+import { Injectable } from "react.di";
 
+@Injectable
 export class ItemStateReactViewComposer implements ReactViewComposer {
 	private readonly _imageRepository: ImageRepository;
 	
@@ -11,7 +13,10 @@ export class ItemStateReactViewComposer implements ReactViewComposer {
 		this._imageRepository = imageRepository;
 	}
 	
-    public compose(state: string, resource: string): ReactNode {
-        return <ItemStateComponent resource={resource} state={state} imageRepository={this._imageRepository}/>
+    public compose(resource: string, state: string): ReactNode {
+        return <ItemStateComponent
+			resource={resource}
+			state={state}
+			imageRepository={this._imageRepository}/>
     }
 }

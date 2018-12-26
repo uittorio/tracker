@@ -1,4 +1,4 @@
 export interface ItemConfig {
-    name: string;
+    id: string;
     resource: string;
 }

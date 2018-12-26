@@ -1,11 +1,13 @@
-import { Viewer } from "../../viewer/viewer";
 import { ItemCount } from "./itemCount";
 import { ItemCountConfig } from "./itemCountConfig";
+import { ViewComposer } from "../../viewer/viewComposer";
+import { Injectable } from "react.di";
 
+@Injectable
 export class ItemCountFactory<T> {
-    private readonly _viewer: Viewer<T>;
+    private readonly _viewer: ViewComposer<T>;
 
-    constructor(viewer: Viewer<T>) {
+    constructor(viewer: ViewComposer<T>) {
         this._viewer = viewer;
     }
 

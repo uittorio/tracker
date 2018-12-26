@@ -1,9 +1,12 @@
 import * as config from '../../game/images.json';
+import { Injectable } from "react.di";
 
 type Images = {[key: string]: string | {[key: string]: string} };
 
+@Injectable
 export class ImageRepository {
-	private _images: Images;
+	private readonly _images: Images;
+	
 	constructor() {
 		this._images = config;
 	}

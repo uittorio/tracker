@@ -1,18 +1,17 @@
-import { Viewer } from "../../viewer/viewer";
-import { State } from "../../state/state";
 import { Item } from "../item";
 import { ItemCountConfig } from "./itemCountConfig";
+import { ViewComposer } from "../../viewer/viewComposer";
 
 export class ItemCount<T> implements Item<T> {
     public items: Array<Item<T>> = [];
-    public name: string;
+    public id: string;
     public resource: string;
     private _currentStateCount: number;
-    private _viewer: Viewer<T>;
+    private _viewer: ViewComposer<T>;
     private readonly _limit: number;
 
-    constructor(viewer: Viewer<T>, config: ItemCountConfig) {
-        this.name = config.name;
+    constructor(viewer: ViewComposer<T>, config: ItemCountConfig) {
+        this.id = config.id;
         this.resource = config.resource;
         this._viewer = viewer;
         this._limit = config.limit;
@@ -35,10 +34,8 @@ export class ItemCount<T> implements Item<T> {
         return !this._currentStateCount;
     }
 
-    getCurrentStateView():T {
-        const state: State = new State(this._currentStateCount.toString());
-
-        return this._viewer.getViewFromState(state, this.resource);
+    getCurrentStateView(): T {
+        return this._viewer.compose(this.resource, this._currentStateCount.toString());
     }
 
     addItem(item: Item<T>): void {

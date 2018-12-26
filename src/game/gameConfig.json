@@ -3,11 +3,11 @@
     {
       "type": "STATE",
       "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "uniqueId": "sword",
+      "id": "sword",
       "resource": "sword",
       "items": [
         {
-          "uniqueId": "gold",
+          "id": "gold",
           "resource": "gold",
           "type": "STATE_SWITCH",
           "states": ["bombos", "ether"]
@@ -17,12 +17,12 @@
     {
       "type": "STATE",
       "states": ["TemperedSword", "MasterSword", "GoldenSword"],
-      "uniqueId": "sword2",
+      "id": "sword2",
       "resource": "sword"
     },
     {
       "type": "COUNT",
-      "uniqueId": "bomb",
+      "id": "bomb",
       "resource": "bomb",
       "limit": 4
     }

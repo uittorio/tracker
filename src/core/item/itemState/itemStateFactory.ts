@@ -1,11 +1,11 @@
-import { Viewer } from "../../viewer/viewer";
 import { ItemState } from "./itemState";
 import { ItemStateConfig } from "./itemStateConfig";
+import { ViewComposer } from "../../viewer/viewComposer";
 
 export class ItemStateFactory<T> {
-    private readonly _viewer: Viewer<T>;
+    private readonly _viewer: ViewComposer<T>;
 
-    constructor(viewer: Viewer<T>) {
+    constructor(viewer: ViewComposer<T>) {
         this._viewer = viewer;
     }
 
