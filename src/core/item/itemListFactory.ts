@@ -10,25 +10,18 @@ import { Inject, Injectable } from "react.di";
 export class ItemListFactory<T> {
 	@Inject private _itemCountFactory: ItemCountFactory<T>;
 	@Inject private _itemStateFactory: ItemStateFactory<T>;
-	@Inject private _gameRepository: GameItemRepository;
 	@Inject private _itemStateSwitchFactory: ItemStateSwitchFactory<T>;
 
     constructor(itemCountFactory: ItemCountFactory<T>,
                 itemStateFactory: ItemStateFactory<T>,
-                itemStateSwitchFactory: ItemStateSwitchFactory<T>,
-                gameRepository: GameItemRepository) {
+                itemStateSwitchFactory: ItemStateSwitchFactory<T>) {
         this._itemCountFactory = itemCountFactory;
         this._itemStateFactory = itemStateFactory;
         this._itemStateSwitchFactory = itemStateSwitchFactory;
-        this._gameRepository = gameRepository;
-    }
-
-    public get(): Array<Item<T>> {
-        return this._convertGameList(this._gameRepository.getAll());
     }
 	
 	public fromConfig(config: Array<GameConfigItem>): Array<Item<T>> {
-		return this._convertGameList(this._gameRepository.getAll());
+		return this._convertGameList(config);
 	}
     
     private _convertGameList(gameItemList: Array<GameConfigItem>) {
