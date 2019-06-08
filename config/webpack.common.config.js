@@ -18,7 +18,7 @@ module.exports = {
     ]
   },
   entry: {
-    app: ['./src/main.ts']
+    app: ['./src/main.tsx']
   },
   resolve: {
     extensions: ['.ts', ".tsx", ".js"]
